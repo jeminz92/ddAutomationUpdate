@@ -16,7 +16,7 @@ public class delta_dental extends Reusable_Annotations {
 
 
 
-    @Test(priority = 1)
+    //@Test(priority = 1)
     public void dd02dentistByInsuranceAndSpecialty() throws InterruptedException {
         //navigate to delta dental
         driver.navigate().to("http://deltadental.com");
@@ -53,7 +53,7 @@ public class delta_dental extends Reusable_Annotations {
     }//end of dd02
 
 
-    @Test(dependsOnMethods = "dd02dentistByInsuranceAndSpecialty")
+    //@Test(dependsOnMethods = "dd02dentistByInsuranceAndSpecialty")
     public void dd06checkCostOfTreatment() throws InterruptedException {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //navigate to delta dental
@@ -81,7 +81,7 @@ public class delta_dental extends Reusable_Annotations {
         Thread.sleep(2000);
     }//end of test dd06
 
-    @Test(dependsOnMethods = "dd06checkCostOfTreatment")
+    @Test(priority = 1)
     public void dd06navigateToFaceBookPage() throws InterruptedException {
         //navigate to delta dental
         driver.navigate().to("http://www.deltadental.com");
@@ -99,12 +99,14 @@ public class delta_dental extends Reusable_Annotations {
         //click on contact us
         ReusableActions_Logger.clickAction(driver, "//*[text()='Contact us']", logger, "contactUs");
         Thread.sleep(2000);
+        //redefining tabs
+        tabs = new ArrayList<>(driver.getWindowHandles());
         //switch to tab 3
         driver.switchTo().window(tabs.get(2));
         //getting text for contact us info with a string variable through reusable action printing it through print statement
         String printInfo = ReusableActions_Logger.getTextAction(driver, "//*[@class='company-description rte-list']", logger, "contactUsInfo");
         System.out.println("Contact Us Info: " + printInfo);
-        Thread.sleep(2000);
+        Thread.sleep(20000);
     }//end of dd06
 }//end of test suite
 
